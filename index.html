@@ -15,8 +15,8 @@
             --card: #23262F;
             --glass: rgba(24,26,32,0.98);
             --shadow: rgba(34, 158, 217, 0.12);
-            --text: #fff;
-            --subtext: #7d8b9a;
+            --text: var(--primary);
+            --subtext: #43B0E6;
         }
         
         * {
@@ -58,10 +58,11 @@
         }
         
         .gradient-text {
-            background: none;
-            color: var(--primary);
-            -webkit-text-fill-color: var(--primary);
-            text-shadow: none;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientTextAnimation 3s ease infinite;
         }
         
         @keyframes spin {
@@ -233,38 +234,47 @@
         /* Мобильная адаптация */
         @media (max-width: 900px) {
             .cases-container {
-                gap: 18px;
+                gap: 16px;
                 max-width: 100%;
+                padding: 10px;
             }
             .case-container {
-                width: 160px;
-                max-width: 160px;
+                width: 140px;
+                max-width: 140px;
+                padding: 4px;
             }
             .case {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
+            }
+            .case-price {
+                font-size: 13px;
+                padding: 3px 8px;
+            }
+            .open-case-btn {
+                font-size: 13px;
+                padding: 8px 0;
             }
         }
         @media (max-width: 600px) {
             .content {
-                padding-top: 80px;
+                padding-top: 60px;
             }
             .cases-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 16px;
+                gap: 12px;
             }
             .case-container {
-                width: 95vw;
-                max-width: 320px;
+                width: 90vw;
+                max-width: 300px;
             }
             .case {
-                width: 90vw;
-                max-width: 180px;
-                height: 90vw;
-                max-height: 180px;
+                width: 80vw;
+                max-width: 160px;
+                height: 80vw;
+                max-height: 160px;
             }
-            /* Отключаем тяжелые анимации */
             .gift-img {
                 animation: none !important;
             }
@@ -279,7 +289,6 @@
                 animation: none !important;
                 opacity: 0.5;
             }
-            /* Упрощаем transition эффекты */
             .case-container,
             .menu-item,
             .inventory-modal-item,
@@ -287,7 +296,6 @@
             .open-case-btn {
                 transition: transform 0.2s ease-out;
             }
-            /* Отключаем hover эффекты */
             .inventory-modal-item:hover,
             .menu-item:hover {
                 transform: none !important;
@@ -577,7 +585,7 @@
 
         .gift-preview-item .item-name {
             font-size: 12px;
-            color: #222;
+            color: rgb(250, 251, 252);
             margin-bottom: 4px;
         }
 
@@ -663,11 +671,11 @@
         }
         
         .profile-stats {
-            background: #23262F;
+            background: #32323b;
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 20px;
-            border: 1px solid #23262F;
+            border: 1px solid #292930;
             box-shadow: none;
             color: var(--text);
         }
@@ -675,7 +683,7 @@
         .profile-stats p {
             margin: 8px 0;
             font-size: 16px;
-            color: #222;
+            color: hsl(207, 66%, 35%);
         }
         
         .profile-stats span {
@@ -730,7 +738,7 @@
         .inventory-modal-item .item-name {
             font-size: 12px;
             margin-bottom: 4px;
-            color: #222;
+            color: #ffffff;
         }
         
         .inventory-modal-item .item-value {
