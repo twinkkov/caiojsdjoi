@@ -539,6 +539,10 @@
         }
         
         .modal-content {
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh; /* Ограничение высоты модального окна */
+            overflow: hidden; /* Скрытие лишнего содержимого */
             background: var(--card);
             border-radius: 12px;
             padding: 16px;
@@ -547,6 +551,21 @@
             animation: modal-pop 0.3s ease;
             border: 1px solid #23262F;
             box-shadow: none;
+        }
+
+        .modal-body {
+            max-height: calc(100vh - 120px); /* Ограничение высоты содержимого */
+            overflow-y: auto; /* Включение вертикальной прокрутки */
+            padding: 10px;
+        }
+
+        .modal-footer {
+            position: sticky;
+            bottom: 0;
+            background: var(--card);
+            padding: 10px;
+            border-top: 1px solid #23262F;
+            text-align: center;
         }
 
         .modal-title {
@@ -1091,66 +1110,75 @@
     <!-- Модальные окна для открытия кейсов -->
     <div class="modal" id="openCaseModal" tabindex="-1">
         <div class="modal-content">
-            <h2>Открыть кейс</h2>
-            <div style="text-align:center;margin-bottom:10px;">
-                <span style="font-size:15px;opacity:0.8;">Количество:</span>
-                <div class="qty-group">
-                    <button id="caseQtyMinus" class="qty-btn">-</button>
-                    <input id="caseQtyInput" type="number" min="1" value="1" class="qty-input">
-                    <button id="caseQtyPlus" class="qty-btn">+</button>
+            <div class="modal-body">
+                <h2>Открыть кейс</h2>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span style="font-size:15px;opacity:0.8;">Количество:</span>
+                    <div class="qty-group">
+                        <button id="caseQtyMinus" class="qty-btn">-</button>
+                        <input id="caseQtyInput" type="number" min="1" value="1" class="qty-input">
+                        <button id="caseQtyPlus" class="qty-btn">+</button>
+                    </div>
                 </div>
+                <div style="margin-bottom:10px;">Стоимость: <span id="caseTotalPrice">50</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+                <div style="margin-bottom:20px;">Ваш баланс: <span id="caseUserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+                
+                <div class="modal-title">Возможные подарки</div>
+                <div class="gift-preview" id="casePreview"></div>
             </div>
-            <div style="margin-bottom:10px;">Стоимость: <span id="caseTotalPrice">50</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-            <div style="margin-bottom:20px;">Ваш баланс: <span id="caseUserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-            
-            <div class="modal-title">Возможные подарки</div>
-            <div class="gift-preview" id="casePreview"></div>
-            
-            <button class="open-case-btn" id="openCaseModalBtn">Купить и открыть</button>
+            <div class="modal-footer">
+                <button class="open-case-btn" id="openCaseModalBtn">Купить и открыть</button>
+            </div>
             <button class="close-btn" onclick="document.getElementById('openCaseModal').classList.remove('active')"></button>
         </div>
     </div>
 
     <div class="modal" id="openNewCaseModal" tabindex="-1">
         <div class="modal-content">
-            <h2>Открыть новый кейс</h2>
-            <div style="text-align:center;margin-bottom:10px;">
-                <span style="font-size:15px;opacity:0.8;">Количество:</span>
-                <div class="qty-group">
-                    <button id="newCaseQtyMinus" class="qty-btn">-</button>
-                    <input id="newCaseQtyInput" type="number" min="1" value="1" class="qty-input">
-                    <button id="newCaseQtyPlus" class="qty-btn">+</button>
+            <div class="modal-body">
+                <h2>Открыть новый кейс</h2>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span style="font-size:15px;opacity:0.8;">Количество:</span>
+                    <div class="qty-group">
+                        <button id="newCaseQtyMinus" class="qty-btn">-</button>
+                        <input id="newCaseQtyInput" type="number" min="1" value="1" class="qty-input">
+                        <button id="newCaseQtyPlus" class="qty-btn">+</button>
+                    </div>
                 </div>
+                <div style="margin-bottom:10px;">Стоимость: <span id="newCaseTotalPrice">100</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+                <div style="margin-bottom:20px;">Ваш баланс: <span id="newCaseUserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+
+                <div class="modal-title">Возможные подарки</div>
+                <div class="gift-preview" id="newCasePreview"></div>
             </div>
-            <div style="margin-bottom:10px;">Стоимость: <span id="newCaseTotalPrice">100</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-            <div style="margin-bottom:20px;">Ваш баланс: <span id="newCaseUserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-
-            <div class="modal-title">Возможные подарки</div>
-            <div class="gift-preview" id="newCasePreview"></div>
-
-            <button class="open-case-btn" id="openNewCaseModalBtn">Купить и открыть</button>
+            <div class="modal-footer">
+                <button class="open-case-btn" id="openNewCaseModalBtn">Купить и открыть</button>
+            </div>
             <button class="close-btn" onclick="document.getElementById('openNewCaseModal').classList.remove('active')"></button>
         </div>
     </div>
 
     <div class="modal" id="openCase2Modal" tabindex="-1">
         <div class="modal-content">
-            <h2>Открыть кейс 2</h2>
-            <div style="text-align:center;margin-bottom:10px;">
-                <span style="font-size:15px;opacity:0.8;">Количество:</span>
-                <div class="qty-group">
-                    <button id="case2QtyMinus" class="qty-btn">-</button>
-                    <input id="case2QtyInput" type="number" min="1" value="1" class="qty-input">
-                    <button id="case2QtyPlus" class="qty-btn">+</button>
+            <div class="modal-body">
+                <h2>Открыть кейс 2</h2>
+                <div style="text-align:center;margin-bottom:10px;">
+                    <span style="font-size:15px;opacity:0.8;">Количество:</span>
+                    <div class="qty-group">
+                        <button id="case2QtyMinus" class="qty-btn">-</button>
+                        <input id="case2QtyInput" type="number" min="1" value="1" class="qty-input">
+                        <button id="case2QtyPlus" class="qty-btn">+</button>
+                    </div>
                 </div>
+                <div style="margin-bottom:10px;">Стоимость: <span id="case2TotalPrice">6000</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+                <div style="margin-bottom:20px;">Ваш баланс: <span id="case2UserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
+
+                <div class="modal-title">Возможные легендарные подарки</div>
+                <div class="gift-preview" id="case2Preview"></div>
             </div>
-            <div style="margin-bottom:10px;">Стоимость: <span id="case2TotalPrice">6000</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-            <div style="margin-bottom:20px;">Ваш баланс: <span id="case2UserBalance">0</span> <img src="images/star_small.png" style="width:18px;vertical-align:middle"></div>
-
-            <div class="modal-title">Возможные легендарные подарки</div>
-            <div class="gift-preview" id="case2Preview"></div>
-
-            <button class="open-case-btn" id="openCase2ModalBtn">Купить и открыть</button>
+            <div class="modal-footer">
+                <button class="open-case-btn" id="openCase2ModalBtn">Купить и открыть</button>
+            </div>
             <button class="close-btn" onclick="document.getElementById('openCase2Modal').classList.remove('active')"></button>
         </div>
     </div>
